@@ -1,6 +1,7 @@
 #### Tic Tac Toe Game with GUI!
 
 import sys
+import os
 import time
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QApplication,QDialog, QWidget, QGridLayout, QPushButton, QSizePolicy
@@ -36,6 +37,8 @@ class TicTacToe(QDialog):
 		self.pushButtonThree.clicked.connect(self.on_pushButtonThree_clicked)
 		self.pushButtonTwo.clicked.connect(self.on_pushButtonTwo_clicked)
 		self.pushButtonOne.clicked.connect(self.on_pushButtonOne_clicked)
+		self.pushButton_SwitchX.clicked.connect(self.on_pushButton_SwitchX_clicked)
+		self.pushButton_SwitchO.clicked.connect(self.on_pushButton_SwitchO_clicked)
 
 
 		self.pushButtonOne.setStyleSheet("QPushButton{background: transparent;}")
@@ -48,7 +51,28 @@ class TicTacToe(QDialog):
 		self.pushButtonEight.setStyleSheet("QPushButton{background: transparent;}")
 		self.pushButtonNine.setStyleSheet("QPushButton{background: transparent;}")
 
-		self.setWindowIcon(QtGui.QIcon('src\\ticicon.png'))
+		self.setWindowIcon(QtGui.QIcon('src\\ticicon.ico'))
+
+
+
+	@pyqtSlot()
+	def on_pushButton_SwitchX_clicked(self):
+
+		if self.p1 == 'O' and self.p2 == 'X':
+			self.p1 = 'X'
+			self.p2 = 'O'
+			self.labelp1.setText('X')
+			self.labelp2.setText('O')
+
+
+	@pyqtSlot()
+	def on_pushButton_SwitchO_clicked(self):
+
+		if self.p1 == 'X' and self.p2 == 'O':
+			self.p1 = 'O'
+			self.p2 = 'X'
+			self.labelp1.setText('O')
+			self.labelp2.setText('X')
 
 
 	@pyqtSlot()
@@ -214,44 +238,55 @@ class TicTacToe(QDialog):
 
 		## X Comprobation!
 
+		x_Win = False
+		o_Win = False
+
 		if self.pushButtonOne.text() + self.pushButtonTwo.text() + self.pushButtonThree.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonFour.text() + self.pushButtonFive.text() + self.pushButtonSix.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonSeven.text() + self.pushButtonEight.text() + self.pushButtonNine.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonOne.text() + self.pushButtonFour.text() + self.pushButtonSeven.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonTwo.text() + self.pushButtonFive.text() + self.pushButtonEight.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonThree.text() + self.pushButtonSix.text() + self.pushButtonNine.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonOne.text() + self.pushButtonFive.text() + self.pushButtonNine.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		if self.pushButtonThree.text() + self.pushButtonFive.text() + self.pushButtonSeven.text() == 'XXX':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('X Win!')
+			x_Win = True
 			self.canMark = False
 
 		## O Comprobation!
@@ -259,44 +294,52 @@ class TicTacToe(QDialog):
 		if self.pushButtonOne.text() + self.pushButtonTwo.text() + self.pushButtonThree.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonFour.text() + self.pushButtonFive.text() + self.pushButtonSix.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonSeven.text() + self.pushButtonEight.text() + self.pushButtonNine.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonOne.text() + self.pushButtonFour.text() + self.pushButtonSeven.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonTwo.text() + self.pushButtonFive.text() + self.pushButtonEight.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonThree.text() + self.pushButtonSix.text() + self.pushButtonNine.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonOne.text() + self.pushButtonFive.text() + self.pushButtonNine.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
 		if self.pushButtonThree.text() + self.pushButtonFive.text() + self.pushButtonSeven.text() == 'OOO':
 			self.labelResult.setStyleSheet('color: green')
 			self.labelResult.setText('O Win!')
+			o_Win = True
 			self.canMark = False
 
-		if self.counter == 8:
+		if self.counter == 8 and not x_Win and not o_Win:
 			self.labelResult.setStyleSheet('color: red')
 			self.labelResult.setText('Tied!')
 
